@@ -1,0 +1,5 @@
+application:
+  ext-service:
+    mongo-gridfs-service: http://localhost:8092/
+server:
+  port: 8093

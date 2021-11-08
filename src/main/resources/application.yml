@@ -1,5 +1,18 @@
-application:
-  ext-service:
-    mongo-gridfs-service: http://localhost:8092/
 server:
   port: 8093
+
+spring:
+  application:
+    name: spring-forestry
+  main:
+    banner-mode: off
+  datasource:
+    url: jdbc:postgresql://localhost:5432/forestry
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    show-sql: true
+ext-service:
+  mongo-gridfs-service: http://localhost:8092/
+  forestry-service: http://localhost:8094/

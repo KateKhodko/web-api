@@ -1,6 +1,6 @@
 package com.khodko.webapi.webapi.controller;
 
-import com.khodko.webapi.webapi.client.MongoGridfsClient;
+import com.khodko.webapi.webapi.resttemplate.MongoRestTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.ResponseEntity;
@@ -12,20 +12,20 @@ import java.io.IOException;
 @RestController
 public class FileController {
 
-    private final MongoGridfsClient mongoGridfsClient;
+    private final MongoRestTemplate mongoRestTemplate;
 
     @Autowired
-    public FileController(MongoGridfsClient mongoGridfsClient) {
-        this.mongoGridfsClient = mongoGridfsClient;
+    public FileController(MongoRestTemplate mongoRestTemplate) {
+        this.mongoRestTemplate = mongoRestTemplate;
     }
 
     @PostMapping("/upload")
     public ResponseEntity<String> upload(@RequestPart("file") MultipartFile file) throws IOException {
-        return mongoGridfsClient.upload(file);
+        return mongoRestTemplate.upload(file);
     }
 
     @GetMapping("/download/{id}")
     public ResponseEntity<ByteArrayResource> download(@PathVariable("id") String id) throws IOException {
-        return mongoGridfsClient.download(id);
+        return mongoRestTemplate.download(id);
     }
 }

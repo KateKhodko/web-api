@@ -6,7 +6,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@FeignClient(name = "forester-service", url = "http://localhost:8094/forester", configuration = FeignSupportConfig.class)
+@FeignClient(name = "forester-service", url = "${ext-service.forestry-service}", configuration = FeignSupportConfig.class)
 public interface ForesterClient {
 
     @GetMapping("/{id}")

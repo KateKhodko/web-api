@@ -16,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService implements UserDetailsService, BaseService<ProfileDto> {
@@ -80,7 +81,10 @@ public class UserService implements UserDetailsService, BaseService<ProfileDto> 
 
     @Override
     public List<ProfileDto> findAll() {
-        return null;
+        return userRepository.findAll()
+                .stream()
+                .map(mapper::entityToDto)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -91,10 +95,13 @@ public class UserService implements UserDetailsService, BaseService<ProfileDto> 
 
     @Override
     public void delete(Long id) {
+        userRepository.deleteById(id);
     }
 
     @Override
     public ProfileDto findById(Long id) {
-        return null;
+        return userRepository.findById(id)
+                .map(mapper::entityToDto)
+                .orElse(null);
     }
 }

@@ -14,11 +14,4 @@ public class ForesterRestTemplate {
         String uploadResourceUrl = "http://localhost:8094/forester";
         return restTemplate.postForObject(uploadResourceUrl, request, ForesterDto.class);
     }
-
-    public ForesterDto attachImage(Long foresterId, String imageId) {
-        RestTemplate restTemplate = new RestTemplate();
-        HttpEntity<String> request = new HttpEntity<>(imageId);
-        String uploadResourceUrl = "http://localhost:8094/forester/";
-        return restTemplate.postForObject(uploadResourceUrl + foresterId, request, ForesterDto.class);
-    }
 }

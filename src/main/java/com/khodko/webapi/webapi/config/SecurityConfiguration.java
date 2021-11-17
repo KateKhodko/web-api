@@ -9,14 +9,14 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    private final ApplicationSetting applicationSetting;
+    private final SecuritySetting securitySetting;
     private final DbAuthenticationProvider dbAuthenticationProvider;
 
     @Autowired
     public SecurityConfiguration(
-            ApplicationSetting applicationSetting,
+            SecuritySetting securitySetting,
             DbAuthenticationProvider dbAuthenticationProvider) {
-        this.applicationSetting = applicationSetting;
+        this.securitySetting = securitySetting;
         this.dbAuthenticationProvider = dbAuthenticationProvider;
     }
 
@@ -28,7 +28,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers(applicationSetting.getWHITE_LIST())
+                .antMatchers(securitySetting.getWHITE_LIST())
                 .permitAll()
                 .anyRequest().authenticated()
                 .and().httpBasic()

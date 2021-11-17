@@ -16,24 +16,8 @@ public class ForesterController {
         this.foresterRestTemplate = foresterRestTemplate;
     }
 
-
-    @PostMapping("/{id}")
-    public ForesterDto attachImage(@PathVariable("id") Long foresterId,
-                                   @RequestParam("imageId") String imageId) {
-        return foresterRestTemplate.attachImage(foresterId, imageId);
-    }
-
-
     @PostMapping
     public ForesterDto createForester(@RequestBody ForesterDto foresterDto) {
         return foresterRestTemplate.createForester(foresterDto);
     }
-
-    /*
-    @GetMapping("/{id}")
-    public ResponseEntity<ForesterDto> findForester(@PathVariable("id") Long id) {
-        return foresterClient.findForester(id);
-    }
-
-     */
 }

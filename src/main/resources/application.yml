@@ -15,4 +15,6 @@ spring:
     show-sql: true
 ext-service:
   mongo-gridfs-service: http://localhost:8092/
-  forestry-service: http://localhost:8094/
+  forestry-service: http://localhost:8094
+security:
+  white-list: /, /user/register, /upload

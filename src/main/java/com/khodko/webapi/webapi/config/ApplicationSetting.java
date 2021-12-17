@@ -9,6 +9,7 @@ public class ApplicationSetting {
 
     private final String[] WHITE_LIST = {
             "/",
+            "/forester/{id}",
             "/user/register"
     };
 }

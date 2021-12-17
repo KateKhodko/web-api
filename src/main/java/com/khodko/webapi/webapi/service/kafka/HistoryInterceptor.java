@@ -22,7 +22,7 @@ public class HistoryInterceptor implements HandlerInterceptor {
             HttpServletRequest request,
             HttpServletResponse response,
             Object handler) throws Exception {
-        historyService.produce(request);
+        historyService.produce(request.toString());
         return true;
     }
 }

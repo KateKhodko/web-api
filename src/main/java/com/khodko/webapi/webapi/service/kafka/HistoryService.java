@@ -10,15 +10,15 @@ import javax.servlet.http.HttpServletRequest;
 @Service
 public class HistoryService {
 
-    private final KafkaTemplate<Long, HttpServletRequest> kafkaTemplate;
+    private final KafkaTemplate<Long, String> kafkaTemplate;
 
     @Autowired
-    public HistoryService(KafkaTemplate<Long, HttpServletRequest> kafkaTemplate) {
+    public HistoryService(KafkaTemplate<Long, String> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
     }
 
     @KafkaListener(topics = {"request"}, groupId = "${kafka.group.id}")
-    public void produce(HttpServletRequest request) {
-        kafkaTemplate.send("request", request);
+    public void produce(String message) {
+        kafkaTemplate.send("request", message);
     }
 }
